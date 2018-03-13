@@ -1,6 +1,6 @@
 <?php
 
-namespace Chrisbjr\ApiGuard\Models;
+namespace Misfits\ApiGuard\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +13,7 @@ class ApiKey extends Model
 
     protected $fillable = [
         'key',
+        'service',
         'apikeyable_id',
         'apikeyable_type',
         'last_ip_address',
@@ -69,7 +70,7 @@ class ApiKey extends Model
      * @param $key
      * @return bool
      */
-    private static function keyExists($key)
+    private static function keyExists($key): bool
     {
         $apiKeyCount = self::where('key', '=', $key)->limit(1)->count();
 
